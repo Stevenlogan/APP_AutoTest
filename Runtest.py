@@ -50,7 +50,7 @@ class Test(unittest.TestCase):
         self.driver.find_element_by_xpath("//android.widget.TextView[@text='零钱(余额:0.04元)']").click()#选择支付方式
         self.driver.find_element_by_xpath("//android.widget.TextView[@text='发出红包帖']").click()#点击发送
 
-
+    #聊天群发送消息功能
     def test_send_IMMessage(self):
         self.driver.find_element_by_id("com.coomix.app.car:id/tab_community").click()  # 点击社区，登录社区账号，否则无法接受消息
         self.driver.find_element_by_id("com.coomix.app.car:id/tab_info").click()  # 切换至消息界面
@@ -58,13 +58,10 @@ class Test(unittest.TestCase):
 
         # 具体操作
         i = 0
-        f = open('C:\Users\pc1412002\Desktop/1.txt', 'r')
+        f = open('./TestData.txt', 'r')
         l = f.readlines()
         f.close()
 
-        # with open('C:\Users\pc1412002\Desktop/1.txt','r') as f:
-        #     l = f.readlines()
-        # f.close()
         while i <= 10000000:
             for m in l:
                 self.driver.find_element_by_id("com.coomix.app.car:id/edittext_layout").send_keys(m.decode('utf8'))
@@ -83,7 +80,7 @@ class Test(unittest.TestCase):
 if __name__ == '__main__':
     testsuite = unittest.TestSuite()
     #testsuite.addTest(Test('test_send_note'))
-    testsuite.addTest(Test('test_send_redpack'))
+    testsuite.addTest(Test('test_send_IMMessage'))
     runner = unittest.TextTestRunner()
     runner.run(testsuite)
 
