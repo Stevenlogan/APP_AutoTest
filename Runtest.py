@@ -51,29 +51,29 @@ class Test(unittest.TestCase):
         self.driver.find_element_by_xpath("//android.widget.TextView[@text='发出红包帖']").click()#点击发送
 
 
-        def test_send_IMMessage(self):
-            self.driver.find_element_by_id("com.coomix.app.car:id/tab_community").click()  # 点击社区，登录社区账号，否则无法接受消息
-            self.driver.find_element_by_id("com.coomix.app.car:id/tab_info").click()  # 切换至消息界面
-            self.driver.find_element_by_xpath("//android.widget.RelativeLayout[@index='1']").click()  # 点击进入聊天群
+    def test_send_IMMessage(self):
+        self.driver.find_element_by_id("com.coomix.app.car:id/tab_community").click()  # 点击社区，登录社区账号，否则无法接受消息
+        self.driver.find_element_by_id("com.coomix.app.car:id/tab_info").click()  # 切换至消息界面
+        self.driver.find_element_by_xpath("//android.widget.RelativeLayout[@index='1']").click()  # 点击进入聊天群
 
-            # 具体操作
-            i = 0
-            f = open('C:\Users\pc1412002\Desktop/1.txt', 'r')
-            l = f.readlines()
-            f.close()
+        # 具体操作
+        i = 0
+        f = open('C:\Users\pc1412002\Desktop/1.txt', 'r')
+        l = f.readlines()
+        f.close()
 
-            # with open('C:\Users\pc1412002\Desktop/1.txt','r') as f:
-            #     l = f.readlines()
-            # f.close()
-            while i <= 10000000:
-                for m in l:
-                    self.driver.find_element_by_id("com.coomix.app.car:id/edittext_layout").send_keys(m.decode('utf8'))
-                    self.driver.find_element_by_id("com.coomix.app.car:id/btn_send").click()
-                    # driver.find_element_by_id("com.coomix.app.car:id/iv_face_normal").click()#点击打开表情界面
-                    # driver.find_element_by_id("com.coomix.app.car:id/iv_expression").click()#选择表情
-                    # driver.find_element_by_id("com.coomix.app.car:id/btn_send").click()#发送
-                print i
-                i += 1
+        # with open('C:\Users\pc1412002\Desktop/1.txt','r') as f:
+        #     l = f.readlines()
+        # f.close()
+        while i <= 10000000:
+            for m in l:
+                self.driver.find_element_by_id("com.coomix.app.car:id/edittext_layout").send_keys(m.decode('utf8'))
+                self.driver.find_element_by_id("com.coomix.app.car:id/btn_send").click()
+                # driver.find_element_by_id("com.coomix.app.car:id/iv_face_normal").click()#点击打开表情界面
+                # driver.find_element_by_id("com.coomix.app.car:id/iv_expression").click()#选择表情
+                # driver.find_element_by_id("com.coomix.app.car:id/btn_send").click()#发送
+            print i
+            i += 1
 
 
 
