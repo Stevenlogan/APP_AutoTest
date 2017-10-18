@@ -34,7 +34,7 @@ class Test(unittest.TestCase):
         self.driver.find_element_by_xpath("//android.widget.TextView[@text='发送']").click()#点击发送按钮发送帖帖子
 
 
-
+    #发红包帖子
     def test_send_redpack(self):
         self.driver.implicitly_wait(10)  # 全局等待10s
         self.driver.find_element_by_id("com.coomix.app.car:id/tab_community").click()# 进入社区
@@ -56,12 +56,13 @@ class Test(unittest.TestCase):
         self.driver.find_element_by_id("com.coomix.app.car:id/tab_info").click()  # 切换至消息界面
         self.driver.find_element_by_xpath("//android.widget.RelativeLayout[@index='1']").click()  # 点击进入聊天群
 
-        # 具体操作
+        # 读取数据文件
         i = 0
         f = open('./TestData.txt', 'r')
         l = f.readlines()
         f.close()
 
+        #循环发送消息10000000次，模拟多用户聊天场景
         while i <= 10000000:
             for m in l:
                 self.driver.find_element_by_id("com.coomix.app.car:id/edittext_layout").send_keys(m.decode('utf8'))
@@ -69,7 +70,7 @@ class Test(unittest.TestCase):
                 # driver.find_element_by_id("com.coomix.app.car:id/iv_face_normal").click()#点击打开表情界面
                 # driver.find_element_by_id("com.coomix.app.car:id/iv_expression").click()#选择表情
                 # driver.find_element_by_id("com.coomix.app.car:id/btn_send").click()#发送
-            print i
+                print i
             i += 1
 
 
