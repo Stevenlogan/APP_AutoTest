@@ -38,7 +38,7 @@ class Test(unittest.TestCase):
     def test_send_redpack(self):
         self.driver.implicitly_wait(10)  # 全局等待10s
         self.driver.find_element_by_id("com.coomix.app.car:id/tab_community").click()# 进入社区
-        self.driver.find_element_by_id("com.coomix.app.car:id/actionbar_right").click()#点击右上角按钮，选择发帖或红包贴
+        self.driver.find_element_by_id("com.coomix.app.car:id/actionbar_right").click()#点击右上角按钮，选择发红包贴
         self.driver.find_element_by_xpath("//android.widget.TextView[@text='发红包帖']").click()#选择发红包贴
         self.driver.find_element_by_xpath("//android.widget.EditText[@text='要发个红包，想说些什么？']").send_keys('asiuhajs')#填写帖子内容
         self.driver.find_element_by_xpath("//android.widget.Button[@text='平台问题反馈']").click()#选择帖子归属版块
