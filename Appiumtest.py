@@ -1,6 +1,6 @@
 #coding:utf-8
 import os
-from OpenApp import *
+from OpenApp_class import *
 import sys
 reload(sys)
 sys.setdefaultencoding('gbk')
