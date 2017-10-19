@@ -4,7 +4,8 @@
 import os
 import unittest
 from OpenApp_class import *
-from HTMLTestRunner import HTMLTestRunner
+import HTMLTestRunner
+from time import *
 import sys
 reload(sys)
 sys.setdefaultencoding('gbk')
@@ -14,6 +15,7 @@ PATH = lambda p:os.path.abspath(os.path.join(os.path.dirname(__file__),p))
 class Test(unittest.TestCase):
     def setUp(self):
         self.device_name = raw_input('Enter your devicename:')
+        #self.device_name = 'CJL5T15C11015231'
         openapp = OpenApp(self.device_name)
         self.driver = openapp.open_app()
         print u'测试开始'
@@ -83,8 +85,16 @@ if __name__ == '__main__':
     testsuite = unittest.TestSuite()
     testsuite.addTest(Test('test_send_note'))
     testsuite.addTest(Test('test_send_IMMessage'))
-    fp = open('./result.html','wb')
-    runner = HTMLTestRunner(stream=fp,title='TestReport',description=u'用例执行情况')
-    runner.run(testsuite)
+    #testsuite = unittest.TestLoader().loadTestsFromTestCase(Test)
+    filename = r'./result.html'
+    fp = open(filename,'wb')
+    try:
+        runner = HTMLTestRunner.HTMLTestRunner(stream=fp,
+                                               title='TestReport',
+                                               description=u'用例执行情况')
+        #runner = unittest.TextTestRunner()
+        runner.run(testsuite)
+    except:
+        print u'出错'
     fp.close()
 
