@@ -4,6 +4,7 @@
 import os
 import unittest
 from OpenApp_class import *
+from HTMLTestRunner import HTMLTestRunner
 import sys
 reload(sys)
 sys.setdefaultencoding('gbk')
@@ -80,8 +81,10 @@ class Test(unittest.TestCase):
 
 if __name__ == '__main__':
     testsuite = unittest.TestSuite()
-    #testsuite.addTest(Test('test_send_note'))
+    testsuite.addTest(Test('test_send_note'))
     testsuite.addTest(Test('test_send_IMMessage'))
-    runner = unittest.TextTestRunner()
+    fp = open('./result.html','wb')
+    runner = HTMLTestRunner(stream=fp,title='TestReport',description=u'用例执行情况')
     runner.run(testsuite)
+    fp.close()
 
