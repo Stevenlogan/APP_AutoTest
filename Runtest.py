@@ -25,12 +25,13 @@ class Test(unittest.TestCase):
         self.driver.find_element_by_id("com.coomix.app.car:id/item_title").click()  # 点击进入用户信息界面
         self.driver.find_element_by_id("com.coomix.app.car:id/btn_switch_account").click()  # 点击注销登录
         self.driver.find_element_by_id("com.coomix.app.car:id/btn_login").click()  # 点击登录按钮
+        self.driver.find_element_by_id("com.coomix.app.car:id/tab_community").click()  # 进入社区
 
 
     #普通帖子发送功能
     def test_send_note(self):
         self.driver.implicitly_wait(10)  # 全局等待10s
-        self.driver.find_element_by_id("com.coomix.app.car:id/tab_community").click()# 进入社区
+        #self.driver.find_element_by_id("com.coomix.app.car:id/tab_community").click()# 进入社区
         self.driver.find_element_by_id("com.coomix.app.car:id/actionbar_right").click()#点击右上角按钮，选择发帖或红包贴
         self.driver.find_element_by_xpath("//android.widget.TextView[@text='发个帖子']").click()#选择发普通贴
         self.driver.find_element_by_xpath("//android.widget.EditText[@text='分享新鲜事...']").send_keys('sddasdas')#输入帖子内容
@@ -40,7 +41,7 @@ class Test(unittest.TestCase):
     #发红包帖子
     def test_send_redpack(self):
         self.driver.implicitly_wait(10)  # 全局等待10s
-        self.driver.find_element_by_id("com.coomix.app.car:id/tab_community").click()# 进入社区
+        #self.driver.find_element_by_id("com.coomix.app.car:id/tab_community").click()# 进入社区
         self.driver.find_element_by_id("com.coomix.app.car:id/actionbar_right").click()#点击右上角按钮，选择发红包贴
         self.driver.find_element_by_xpath("//android.widget.TextView[@text='发红包帖']").click()#选择发红包贴
         self.driver.find_element_by_xpath("//android.widget.EditText[@text='要发个红包，想说些什么？']").send_keys('asiuhajs')#填写帖子内容
@@ -55,7 +56,7 @@ class Test(unittest.TestCase):
 
     #聊天群发送消息功能
     def test_send_IMMessage(self):
-        self.driver.find_element_by_id("com.coomix.app.car:id/tab_community").click()  # 点击社区，登录社区账号，否则无法接受消息
+        #self.driver.find_element_by_id("com.coomix.app.car:id/tab_community").click()  # 点击社区，登录社区账号，否则无法接受消息
         self.driver.find_element_by_id("com.coomix.app.car:id/tab_info").click()  # 切换至消息界面
         self.driver.find_element_by_xpath("//android.widget.RelativeLayout[@index='1']").click()  # 点击进入聊天群
 
@@ -66,7 +67,7 @@ class Test(unittest.TestCase):
         f.close()
 
         #循环发送消息10000000次，模拟多用户聊天场景
-        while i <= 10000000:
+        while i <= 5:
             for m in l:
                 self.driver.find_element_by_id("com.coomix.app.car:id/edittext_layout").send_keys(m.decode('utf8'))
                 self.driver.find_element_by_id("com.coomix.app.car:id/btn_send").click()
@@ -83,16 +84,16 @@ class Test(unittest.TestCase):
 
 if __name__ == '__main__':
     testsuite = unittest.TestSuite()
-    testsuite.addTest(Test('test_send_note'))
-    testsuite.addTest(Test('test_send_IMMessage'))
-    #testsuite = unittest.TestLoader().loadTestsFromTestCase(Test)
+    #testsuite.addTest(Test('test_send_note'))
+    #testsuite.addTest(Test('test_send_IMMessage'))
+    testsuite = unittest.TestLoader().loadTestsFromTestCase(Test)
     filename = r'./result.html'
     fp = open(filename,'wb')
     try:
         runner = HTMLTestRunner(fp,title='TestReport',description=u'用例执行情况')
         #runner = unittest.TextTestRunner()
         runner.run(testsuite)
-    except:
-        print u'出错'
+    except Exception as e:
+        print e.message
     fp.close()
 
