@@ -4,7 +4,7 @@
 import os
 import unittest
 from OpenApp_class import *
-import HTMLTestRunner
+from HTMLTestRunner import HTMLTestRunner
 from time import *
 import sys
 reload(sys)
@@ -14,8 +14,8 @@ PATH = lambda p:os.path.abspath(os.path.join(os.path.dirname(__file__),p))
 
 class Test(unittest.TestCase):
     def setUp(self):
-        self.device_name = raw_input('Enter your devicename:')
-        #self.device_name = 'CJL5T15C11015231'
+        #self.device_name = raw_input('Enter your devicename:')
+        self.device_name = 'CJL5T15C11015231'
         openapp = OpenApp(self.device_name)
         self.driver = openapp.open_app()
         print u'测试开始'
@@ -89,9 +89,7 @@ if __name__ == '__main__':
     filename = r'./result.html'
     fp = open(filename,'wb')
     try:
-        runner = HTMLTestRunner.HTMLTestRunner(stream=fp,
-                                               title='TestReport',
-                                               description=u'用例执行情况')
+        runner = HTMLTestRunner(fp,title='TestReport',description=u'用例执行情况')
         #runner = unittest.TextTestRunner()
         runner.run(testsuite)
     except:

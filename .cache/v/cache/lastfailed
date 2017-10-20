@@ -1,0 +1,5 @@
+{
+  "Runtest.py::Test::test_send_IMMessage": true, 
+  "Runtest.py::Test::test_send_note": true, 
+  "Runtest.py::Test::test_send_redpack": true
+}
