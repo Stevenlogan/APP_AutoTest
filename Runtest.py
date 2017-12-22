@@ -4,7 +4,7 @@
 import os
 import unittest
 from OpenApp_class import *
-import HTMLTestRunner
+from HTMLTestRunner import HTMLTestRunner
 from time import *
 import sys
 reload(sys)
@@ -90,9 +90,7 @@ if __name__ == '__main__':
     filename = r'./result.html'
     fp = open(filename,'wb')
     try:
-        runner = HTMLTestRunner.HTMLTestRunner(stream=fp,
-                                               title='TestReport',
-                                               description=u'用例执行情况')
+        runner = HTMLTestRunner(fp,title='TestReport',description=u'用例执行情况')
         #runner = unittest.TextTestRunner()
         runner.run(testsuite)
     except Exception as e:
