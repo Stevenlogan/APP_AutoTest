@@ -86,7 +86,7 @@ if __name__ == '__main__':
     testsuite = unittest.TestSuite()
     #testsuite.addTest(Test('test_send_note'))
     #testsuite.addTest(Test('test_send_IMMessage'))
-    testsuite = unittest.TestLoader().loadTestsFromTestCase(Test)
+    testsuite = unittest.TestLoader().loadTestsFromTestCase(Test)#加载所有测试用例一次执行
     filename = r'./result.html'
     fp = open(filename,'wb')
     try:
